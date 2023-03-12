@@ -10,20 +10,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 // middle inbuilt in ExpressJs
 app.use(express.urlencoded());
-
-// middelWare Example:
-app.use((req, res, next)=>{
-    // console.log('middleware 1 is called');
-    req.myName = "Arpan";
-    next();
-})
-
-// MW 2
-app.use((req, res, next)=>{    
-        console.log('My name from Mw2: ', req.myName);
-        next();
-    }
-)
+app.use(express.static('assets'));
 
 
 var contactList = [
@@ -60,10 +47,7 @@ app.get('/practice', (req, res)=> {
 
 app.post('/contact-list', function(req, res){
 
-    // contactList.push({
-    //     name: req.body.name,
-    //     phone: req.body.phone
-    // })
+//    note : req is an object.
     contactList.push(req.body);
     return res.redirect('back');
     

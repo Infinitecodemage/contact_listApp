@@ -1,0 +1,5 @@
+body{
+    /*align horizontally a inline element in block element.  
+    similar to vertical-align but in hori.*/
+    text-align: center;
+}
