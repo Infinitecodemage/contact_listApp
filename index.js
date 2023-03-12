@@ -10,10 +10,8 @@ app.set('views', path.join(__dirname, 'views'));
 
 
 app.get('/', function(req, res){
-    // res.send(`<h1>Cool, Iruki you have setup "Returning the response from the server".<h1>`);
-    return res.render('home');
+    return res.render('home', {title: "I am title, Terraze!!"});
 })
-
 
 
 app.listen(port, function(err){
