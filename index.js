@@ -8,9 +8,19 @@ const app = express();
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
+var contactList = [
+    {name: "Sharielle", type: "medical mage"},
+    {name: "Dante", type: "light mage"}, 
+    {name: "mark", type: "Earth mage"}
+]
+
 
 app.get('/', function(req, res){
-    return res.render('home', {title: "I am title, Terraze!!"});
+    return res.render('home', {
+        // locals or 'context'
+        title: "Contact List",
+        contact_list : contactList
+    });
 })
 
 
@@ -20,3 +30,4 @@ app.listen(port, function(err){
     }
     console.log(`Yup,Hey fallen Angel, My Express server is running on port: ${port}`);
 })
+
