@@ -8,6 +8,24 @@ const app = express();
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
+// middle inbuilt in ExpressJs
+app.use(express.urlencoded());
+
+// middelWare Example:
+app.use((req, res, next)=>{
+    // console.log('middleware 1 is called');
+    req.myName = "Arpan";
+    next();
+})
+
+// MW 2
+app.use((req, res, next)=>{    
+        console.log('My name from Mw2: ', req.myName);
+        next();
+    }
+)
+
+
 var contactList = [
     {
         name: "Sharielle", 
@@ -21,14 +39,10 @@ var contactList = [
 ]
 
 
-app.get('/practice', (req, res)=> {
-    return res.render('practice', {
-        title: "let us play with ejs"
-    });
-});
-
 
 app.get('/', function(req, res){
+    console.log('from the get route controller', req.myName);
+
     return res.render('home', {
         // locals or 'context'
         title: "Contact List",
@@ -36,9 +50,23 @@ app.get('/', function(req, res){
     });
 })
 
+app.get('/practice', (req, res)=> {
+    
+    return res.render('practice', {
+        title: "let us play with ejs"
+    });
+});
+
 
 app.post('/contact-list', function(req, res){
-    return res.redirect('/practice');
+
+    // contactList.push({
+    //     name: req.body.name,
+    //     phone: req.body.phone
+    // })
+    contactList.push(req.body);
+    return res.redirect('back');
+    
 });
 
 
