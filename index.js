@@ -9,9 +9,15 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 var contactList = [
-    {name: "Sharielle", type: "medical mage"},
-    {name: "Dante", type: "light mage"}, 
-    {name: "mark", type: "Earth mage"}
+    {
+        name: "Sharielle", 
+        phone: 1233434347 },
+    {
+        name: "Dante", 
+        phone: 2123343434 }, 
+    {
+        name: "Mark", 
+        phone: 3233434348 }
 ]
 
 
@@ -22,6 +28,18 @@ app.get('/', function(req, res){
         contact_list : contactList
     });
 })
+
+
+app.get('/practice', (req, res)=> {
+    return res.render('practice', {
+        title: "let us play with ejs"
+    });
+});
+
+
+app.post('/contact-list', function(req, res){
+    return res.redirect('/practice');
+});
 
 
 app.listen(port, function(err){
