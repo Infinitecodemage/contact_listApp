@@ -21,6 +21,13 @@ var contactList = [
 ]
 
 
+app.get('/practice', (req, res)=> {
+    return res.render('practice', {
+        title: "let us play with ejs"
+    });
+});
+
+
 app.get('/', function(req, res){
     return res.render('home', {
         // locals or 'context'
@@ -28,13 +35,6 @@ app.get('/', function(req, res){
         contact_list : contactList
     });
 })
-
-
-app.get('/practice', (req, res)=> {
-    return res.render('practice', {
-        title: "let us play with ejs"
-    });
-});
 
 
 app.post('/contact-list', function(req, res){
