@@ -54,7 +54,14 @@ app.post('/contact-list', function(req, res){
 //  of delete-button from home.ejs file.
 app.get('/delete-contact', function(req, res){
     console.log(req.query);
-    let phone="";
+    let phone=req.query.phone;
+
+    let contactIndex = contactList.findIndex(contact => contact.phone == phone);
+
+    if(contactIndex != -1) {
+        contactList.splice(contactIndex, 1);
+    }
+    return res.redirect('back'); //come back to the same page.
 })
 
 app.listen(port, function(err){
