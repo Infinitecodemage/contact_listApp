@@ -1,25 +1,41 @@
 <html>
     <head>
         <title><%=title %></title>
+        <!-- cdn font-awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <!-- link to css files -->
         <link rel="stylesheet" href="/css/home.css" type="text/css">
     </head>
     <body>
-        <h1>Contact List</h1>
-        <div>
+        <h1 id="page-heading">
+            <i class="fas fa-address-book"></i>
+            My Contact List
+        </h1>
+
+        <div id="contacts-list-container">
             <ul>
                 <% for(let i of contact_list) {%>
-                    <li>
-                        <p> <%=i.name%></p>
-                        <p><%= i.phone%></p>
+                    <li class="contact">
+                        <div class="details">
+                            <p> <%=i.name%></p>
+                            <p><%= i.phone%></p>
+                        </div>
+
+                        <!-- creating a delete button usng --a-- tag use use icon to simulate button. -->
+                        <div class="delete-button">
+                            <a href="/delete-contact/?phone=<%= i.phone%>">
+                                <i class="fas fa-window-close"></i>
+                            </a>
+                        </div>   
+
                     </li>
                 <%}%>
             </ul>
         </div>
 
-        <form action="/contact-list" method="POST">
-            <input type="text" name="name" placeholder="Enter Name">
-            <input type="text" name="phone" placeholder="Enter Phone">
+        <form id="new-contact-form" action="/contact-list" method="POST">
+            <input type="text" name="name" placeholder="Enter Name" required>
+            <input type="text" name="phone" placeholder="Enter Phone" required>
             <button type="submit">Add Contact</button>
         </form>
         

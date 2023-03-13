@@ -28,8 +28,6 @@ var contactList = [
 
 
 app.get('/', function(req, res){
-    console.log('from the get route controller', req.myName);
-
     return res.render('home', {
         // locals or 'context'
         title: "Contact List",
@@ -52,7 +50,12 @@ app.post('/contact-list', function(req, res){
     return res.redirect('back');
     
 });
-
+// we are assuming something from url of --a-- tag's href=""
+//  of delete-button from home.ejs file.
+app.get('/delete-contact', function(req, res){
+    console.log(req.query);
+    let phone="";
+})
 
 app.listen(port, function(err){
     if(err){
