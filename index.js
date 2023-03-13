@@ -3,7 +3,10 @@ const path = require('path');
 
 const port = 8000;
 
+const db = require('./config/mongoose');
 const app = express();
+
+
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -35,6 +38,7 @@ app.get('/', function(req, res){
     });
 })
 
+
 app.get('/practice', (req, res)=> {
     
     return res.render('practice', {
@@ -44,12 +48,12 @@ app.get('/practice', (req, res)=> {
 
 
 app.post('/contact-list', function(req, res){
-
 //    note : req is an object.
     contactList.push(req.body);
-    return res.redirect('back');
-    
+    return res.redirect('back');    
 });
+
+
 // we are assuming something from url of --a-- tag's href=""
 //  of delete-button from home.ejs file.
 app.get('/delete-contact', function(req, res){
