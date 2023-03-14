@@ -80,16 +80,15 @@ app.listen(port, function(err){
 // we are assuming something from url of --a-- tag's href=""
 //  of delete-button from home.ejs file.
 app.get('/delete-contact', function(req, res){
-    console.log(req.query);
-    let phone=req.query.phone;
+    // console.log(req.query);
+    // let phone=req.query.phone;
 
-    let contactIndex = contactList.findIndex(contact => contact.phone == phone);
-
-    if(contactIndex != -1) {
-        contactList.splice(contactIndex, 1);
-    }
-    return res.redirect('back'); //come back to the same page.
-})
+    let id = req.query.id; 
+    console.log(req.query, " :is  id");
+    Contact.findByIdAndDelete(id)
+    .then(()=> {return res.redirect('back')})
+    .catch((err)=> {console.log('Error in deleting data from database.')})    
+});
 
 
 
