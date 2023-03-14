@@ -4,6 +4,7 @@
   "description": "a basic contact list to learn Express Js as a framework.",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Iruki_Mercodine",
