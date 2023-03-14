@@ -38,11 +38,15 @@ app.get('/practice', (req, res)=> {
 });
 
 app.get('/', function(req, res){
-    return res.render('home', {
-        // locals or 'context'
-        title: "Contact List",
-        contact_list : contactList
-    });
+
+    Contact.find({})
+    .then((contacts) => {
+        res.render('home', {title: "Contact Lists", contact_list: contacts});
+    })
+    .catch((err) => {
+        console.log('Error in fetching the contacts.')
+        return;
+    })
 })
 
 
@@ -60,6 +64,8 @@ app.post('/create-contact', function(req, res){
         console.log('error in creating a contact!');        
     })
 }); 
+
+
 
 
 
